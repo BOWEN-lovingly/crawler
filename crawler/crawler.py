@@ -233,7 +233,7 @@ def writeS3(bucket,key,data):
     response = s3.upload_file(_data,bucket,key)
     return
 
-def to_dict(self,q,k,vals):
+def to_dict(q,k,vals):
         data = dict()
         while q:
             item = q.pop()
