@@ -149,7 +149,7 @@ def run_parser(element_q,content_q,cls,**kwargs):
 def decode_content(func,content_q,*args,**kwargs):
     data = []
     for content in consume_message_q(content_q):
-        item = func(content,*args,*kwargs)
+        item = func(content,*args,**kwargs)
         data.append(item)
     return data
 
