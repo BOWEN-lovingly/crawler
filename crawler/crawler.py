@@ -220,16 +220,6 @@ class CrawlerBuilder:
 
 ########################### I/O ##############################
 
-def readS3(bucket,key,s3_client):
-    response = s3_client.get_object(Bucket=bucket,Key=key)
-    data = response['Body'].read()
-    return pickle.loads(data)
-
-def writeS3(bucket,key,data,s3_client):
-    _data = pickle.dumps(data)
-    response = s3_client.upload_file(_data,bucket,key)
-    return
-
 def to_dict(q,k,vals):
         data = dict()
         while q:
