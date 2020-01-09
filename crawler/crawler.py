@@ -228,7 +228,7 @@ def to_dict(q,k,vals):
             if isinstance(vals,str):
                 value = getattr(item,vals)
             if isinstance(vals,list):
-                value = (getattr(item,val) for val in vals)
+                value = tuple((getattr(item,val) for val in vals))
             if key and key not in data:
                 data[key] = value
         return data
