@@ -7,7 +7,8 @@ setup(
     packages = find_packages(),
     install_requires = [
         # Github Private Repository - needs entry in `dependency_links`
-        'BeautifulSoup'
+        'BeautifulSoup',
+        'boto3'
     ],
     dependency_links = [
      "https://github.com/BOWEN-lovingly/crawler.git"

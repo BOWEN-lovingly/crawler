@@ -1,6 +1,6 @@
 import os
 import re
-
+import boto3
 from collections import deque
 import requests
 from bs4 import BeautifulSoup
@@ -8,7 +8,6 @@ import json
 import time
 from contextlib import contextmanager
 from copy import deepcopy
-import logging
 import pickle
 
 class DataType:
