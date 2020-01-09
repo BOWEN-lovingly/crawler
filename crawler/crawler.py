@@ -22,6 +22,9 @@ class DataType:
             dic.update(kwargs)
         return dic
 
+class UrlType(DataType):
+    __slot__ = ['brand_link']
+
 class CreateDataType:
     def __init__(self,cls):
         self.data = cls()
