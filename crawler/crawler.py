@@ -14,7 +14,7 @@ import pickle
 class DataType:
     __slot__ = []
     def __init__(self,**kwargs):
-        [self.__setattr__(key,kwargs.get(key) if kwargs else None) for key in self.__slot__]
+        [setattr(self,key,kwargs.get(key) if kwargs else None) for key in self.__slot__]
 
     def to_dict(self,**kwargs):
         dic = deepcopy(self.__dict__)
@@ -169,7 +169,7 @@ class CrawlerBuilder:
         self.parse_conf = conf.parser
 
     def add_configure(self,**kwargs):
-        [self.__setattr__('{}_conf'.format(key),value) for key,value in kwargs.items()]
+        [setattr(self,'{}_conf'.format(key),value) for key,value in kwargs.items()]
 
     def start(self):
         self.engine.build_session()
