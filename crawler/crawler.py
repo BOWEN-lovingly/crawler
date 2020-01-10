@@ -68,7 +68,7 @@ def create_request(url, session, **kwargs):
         req.raise_for_status()
         return req
     except Exception as e:
-        logger.error(e)
+        print e
         pass
 
 ################# positioning #####################
@@ -100,7 +100,7 @@ def fetch_element(func,*args,**kwargs):
         try:
             yield func(*args,**kwargs)
         except Exception as e:
-            print(e)
+            print e
             yield None
 
 def select_elements(response,selector=None):
@@ -260,7 +260,7 @@ class BloomNationCrawlerBuilder(CrawlerBuilder):
             url = switch_page(resp[0],**kwargs)
             if not url:
                 break
-            print('next-page-link:  {}'.format(url))
+            print 'next-page-link:  {}'.format(url)
             req = self.create_request(url)
             resp = run_downloader(dq,req,selector=None)
         del dq
@@ -270,7 +270,7 @@ class BloomNationCrawlerBuilder(CrawlerBuilder):
         self.fetch_all_pages(req)
         self.run_spider(cls=UrlType,**self.shop_spider_conf)
         self.run_parser(cls=UrlType,**self.shop_parser_conf)
-        shop_urls = set(self.decode_content(lambda x:x.link if x else None))
+        shop_urls = set(self.decode_content(lambda x:x.brand_link if x else None))
         shop_urls = list(filter(lambda x:x and x.startswith('https://www.bloomnation.com'),shop_urls))
         self.engine.reset()
         return shop_urls
@@ -281,7 +281,7 @@ class BloomNationCrawlerBuilder(CrawlerBuilder):
             if s > 0 and s%step == 0:
                 time.sleep(time_sleep)
             shop_urls = self.download_shop_url(url)
-            print(shop_urls)
+            print shop_urls
             CrawlerBuilder.__call__(self,shop_urls,step=step,time_sleep=time_sleep,spider_types=spider_types,parser_types=parser_types)
         return self.engine.content
 
